@@ -4,7 +4,7 @@ A personal portfolio website built to showcase my frontend work, skills, and pro
 
 ## Live Demo
 
-[View Portfolio](https://personal-portfolio-tawny-ten.vercel.app/)
+[View Portfolio](diegoruiz-portfolio.vercel.app)
 
 ## Overview
 
