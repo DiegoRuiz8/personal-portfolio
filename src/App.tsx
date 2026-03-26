@@ -36,7 +36,7 @@ export default function App() {
     github: "https://github.com/DiegoRuiz8",
     linkedin: "https://www.linkedin.com/in/d-ruizm/",
     email: "mailto:diegoruiz55@hotmail.com",
-    resume: "/public/CVRuizDiego_portfolio.pdf",
+    resume: "/CVRuizDiego_portfolio.pdf",
   };
 
   return (
