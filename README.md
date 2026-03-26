@@ -4,7 +4,7 @@ A personal portfolio website built to showcase my frontend work, skills, and pro
 
 ## Live Demo
 
-[View Portfolio](https://your-vercel-url.vercel.app/)
+[View Portfolio](https://personal-portfolio-tawny-ten.vercel.app/)
 
 ## Overview
 
@@ -26,6 +26,7 @@ This portfolio was built as a fast, practical way to present my work while apply
 A mobile-first workout tracker built with React, TypeScript, Zustand, and Vite.
 
 Key features:
+
 - Active workout flow
 - Session-based workout history
 - Exercise variants
