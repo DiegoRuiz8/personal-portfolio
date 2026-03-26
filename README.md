@@ -1,73 +1,82 @@
-# React + TypeScript + Vite
+# Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal portfolio website built to showcase my frontend work, skills, and projects in a clean, recruiter-friendly format.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+[View Portfolio](https://your-vercel-url.vercel.app/)
 
-## React Compiler
+## Overview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This portfolio was built as a fast, practical way to present my work while applying for frontend roles. The goal was to keep it simple, modern, and focused on what matters most: who I am, what I build, and how to explore my projects.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Clean single-page portfolio layout
+- Responsive design for mobile and desktop
+- Project showcase section
+- Resume access via PDF
+- Contact section with relevant links
+- Clickable project screenshots with modal preview
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Highlighted Project
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Lift Log
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+A mobile-first workout tracker built with React, TypeScript, Zustand, and Vite.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Key features:
+- Active workout flow
+- Session-based workout history
+- Exercise variants
+- Variant swapping during active workout
+- JSON import/export
+- PWA support
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Live Demo: [Lift Log](https://gym-tracker-v1.vercel.app/)  
+Repository: [Lift Log Repo](https://github.com/DiegoRuiz8/gym-tracker-v1.git)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Tech Stack
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Vercel
+
+## Getting Started
+
+Clone the repository:
+
+git clone https://github.com/your-username/personal-portfolio.git
+
+Go into the project folder:
+
+cd personal-portfolio
+
+Install dependencies:
+
+npm install
+
+Run the development server:
+
+npm run dev
+
+## Build for Production
+
+npm run build
+
+Preview the production build locally:
+
+npm run preview
+
+## Purpose
+
+This project is part of my job search as a junior frontend developer. It is meant to present my work clearly and professionally without unnecessary complexity.
+
+## Author
+
+Diego Ruiz
+
+- GitHub: [@DiegoRuiz8](https://github.com/DiegoRuiz8)
+- LinkedIn: [your-linkedin-url]
