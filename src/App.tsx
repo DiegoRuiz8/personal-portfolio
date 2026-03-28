@@ -1,6 +1,9 @@
 import homeImg from "./assets/home.png";
 import activeWorkoutImg from "./assets/active-workout.png";
 import historyImg from "./assets/history.png";
+import trafficDashboardImg from "./assets/traffic-dashboard.png";
+import trafficStatsImg from "./assets/traffic-stats.png";
+import trafficCamerasImg from "./assets/traffic-cameras.png";
 import { useState } from "react";
 
 export default function App() {
@@ -29,6 +32,29 @@ export default function App() {
         "Local persistence and JSON backup flow",
       ],
       screenshots: [homeImg, activeWorkoutImg, historyImg],
+    },
+    {
+      title: "Traffic Monitoring Dashboard",
+      description:"Frontend dashboard for monitoring traffic flow at an urban intersection, including traffic volume analysis, vehicle distribution, camera monitoring, and map-based views.",
+      stack: [
+        "React",
+        "TypeScript",
+        "Vite",
+        "React Router",
+        "CSS",
+        "Charts",
+        "Google Maps",
+        "Vercel",
+      ],
+      demo: "https://traffic-monitoring-dashboard-omega.vercel.app/",
+      repo: "https://github.com/DiegoRuiz8/traffic-monitoring-dashboard.git",
+      highlights: [
+        "Built the frontend dashboard UI for a collaborative traffic analysis project",
+        "Designed metric cards, charts, and data views for traffic monitoring",
+        "Used seeded/mock data to present expected traffic analysis flows",
+        "Focused on usability, layout clarity, and dashboard-style information hierarchy",
+      ],
+      screenshots: [trafficDashboardImg, trafficStatsImg, trafficCamerasImg],
     },
   ];
 
@@ -70,7 +96,8 @@ export default function App() {
               Junior React / Frontend
             </p>
             <h2 className="max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl">
-             I build clean, practical user interfaces with React and TypeScript.
+              I build clean, practical user interfaces with React and
+              TypeScript.
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-7 text-neutral-300 sm:text-lg">
               I’m a junior frontend developer focused on building responsive,
@@ -145,8 +172,10 @@ export default function App() {
             Selected Work
           </h3>
           <p className="mt-3 max-w-2xl text-neutral-300">
-            I’m prioritizing solid, finished projects over filler. Right now,
-            Lift Log is my strongest portfolio piece.
+            <p className="mt-3 max-w-2xl text-neutral-300">
+              I’m prioritizing solid, practical projects over filler. These are
+              the portfolio pieces that best represent my frontend work.
+            </p>
           </p>
         </div>
 
