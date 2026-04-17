@@ -13,7 +13,7 @@ export default function App() {
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
+      "(prefers-reduced-motion: reduce)",
     ).matches;
 
     // Reveal elements as they enter the viewport; unobserve after triggering once
@@ -28,7 +28,7 @@ export default function App() {
       },
       // threshold: 0 fires as soon as any pixel enters the viewport.
       // rootMargin bottom expansion triggers 80px before the element reaches the edge.
-      { threshold: 0, rootMargin: "0px 0px 80px 0px" }
+      { threshold: 0, rootMargin: "0px 0px 80px 0px" },
     );
     document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
@@ -85,7 +85,8 @@ export default function App() {
     },
     {
       title: "Traffic Monitoring Dashboard",
-      description:"Frontend dashboard for monitoring traffic flow at an urban intersection, including traffic volume analysis, vehicle distribution, camera monitoring, and map-based views.",
+      description:
+        "Frontend dashboard for monitoring traffic flow at an urban intersection, including traffic volume analysis, vehicle distribution, camera monitoring, and map-based views.",
       stack: [
         "React",
         "TypeScript",
@@ -129,7 +130,10 @@ export default function App() {
             </h1>
           </div>
           <nav className="hidden gap-6 text-sm text-neutral-300 sm:flex">
-            <a href="#projects" className="nav-link transition hover:text-white">
+            <a
+              href="#projects"
+              className="nav-link transition hover:text-white"
+            >
               Projects
             </a>
             <a href="#about" className="nav-link transition hover:text-white">
@@ -181,7 +185,10 @@ export default function App() {
             </div>
           </section>
 
-          <aside ref={heroAsideRef} className="hero-enter hero-enter-5 hero-parallax rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-2xl shadow-black/20">
+          <aside
+            ref={heroAsideRef}
+            className="hero-enter hero-enter-5 hero-parallax rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-2xl shadow-black/20"
+          >
             <p className="text-sm uppercase tracking-[0.2em] text-neutral-400">
               Core Focus
             </p>
