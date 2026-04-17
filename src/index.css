@@ -1,1 +1,144 @@
 @import "tailwindcss";
+
+/* ── Animation tokens — tune these to adjust the whole site ── */
+:root {
+  --duration-enter: 500ms;
+  --duration-micro: 200ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Keyframes ──────────────────────────────────────────────── */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Hero entrance stagger ──────────────────────────────────── */
+.hero-enter {
+  opacity: 0;
+  animation: fade-up var(--duration-enter) var(--ease-out) forwards;
+}
+.hero-enter-1 { animation-delay: 0ms; }
+.hero-enter-2 { animation-delay: 100ms; }
+.hero-enter-3 { animation-delay: 210ms; }
+.hero-enter-4 { animation-delay: 320ms; }
+.hero-enter-5 { animation-delay: 460ms; }
+
+/* ── Scroll-triggered reveal ─────────────────────────────────
+   .reveal owns the `transition` property.
+   .card-hover intentionally does NOT define transition when paired
+   with .reveal — it uses the reveal transition which already covers
+   transform and box-shadow. This avoids the cascade conflict where
+   card-hover's transition would drop the opacity transition. ──── */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--duration-enter) var(--ease-out),
+    transform 300ms ease-out,
+    box-shadow 300ms ease-out;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 80ms; }
+.reveal-delay-2 { transition-delay: 180ms; }
+
+/* ── Project card hover lift ────────────────────────────────── */
+/* Gate hover on .is-visible so it can't fire during the enter animation */
+.card-hover.is-visible:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+}
+/* Fallback for any card-hover used without .reveal */
+.card-hover:not(.reveal) {
+  transition: transform 300ms ease-out, box-shadow 300ms ease-out;
+}
+.card-hover:not(.reveal):hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+}
+
+/* ── Nav link slide-in underline ────────────────────────────── */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width var(--duration-micro) var(--ease-standard);
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ── Lightbox fade-in ────────────────────────────────────────── */
+.lightbox-enter {
+  animation: fade-in 150ms var(--ease-standard) forwards;
+}
+
+/* ── Reading progress bar (JS-driven width) ─────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: #22d3ee; /* cyan-400 */
+  z-index: 100;
+  pointer-events: none;
+  transition: width 60ms linear;
+}
+
+/* ── Parallax hint ───────────────────────────────────────────── */
+.hero-parallax {
+  will-change: transform;
+}
+
+/* ── Reduced motion: disable every animation / transition ───── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter {
+    animation: none;
+    opacity: 1;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .card-hover.is-visible:hover,
+  .card-hover:not(.reveal):hover {
+    transform: none;
+    box-shadow: none;
+  }
+  .card-hover:not(.reveal) {
+    transition: none;
+  }
+  .nav-link::after {
+    transition: none;
+  }
+  .lightbox-enter {
+    animation: none;
+  }
+  .progress-bar {
+    display: none;
+  }
+}

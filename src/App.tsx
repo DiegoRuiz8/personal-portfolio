@@ -4,10 +4,60 @@ import historyImg from "./assets/history.png";
 import trafficDashboardImg from "./assets/traffic-dashboard.png";
 import trafficStatsImg from "./assets/traffic-stats.png";
 import trafficCamerasImg from "./assets/traffic-cameras.png";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function App() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const progressBarRef = useRef<HTMLDivElement>(null);
+  const heroAsideRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    // Reveal elements as they enter the viewport; unobserve after triggering once
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      // threshold: 0 fires as soon as any pixel enters the viewport.
+      // rootMargin bottom expansion triggers 80px before the element reaches the edge.
+      { threshold: 0, rootMargin: "0px 0px 80px 0px" }
+    );
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+    if (prefersReducedMotion) return () => observer.disconnect();
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+      // Reading progress bar
+      if (progressBarRef.current) {
+        progressBarRef.current.style.width = `${(scrollY / docHeight) * 100}%`;
+      }
+
+      // Gentle parallax on hero aside — moves slightly slower than scroll to
+      // create a subtle depth difference. Capped so it stops before hero exits.
+      if (heroAsideRef.current) {
+        const offset = Math.min(scrollY * 0.06, 30);
+        heroAsideRef.current.style.transform = `translateY(${offset}px)`;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   const projects = [
     {
       title: "Lift Log",
@@ -67,6 +117,7 @@ export default function App() {
 
   return (
     <main className="min-h-screen bg-neutral-950 text-neutral-100">
+      <div ref={progressBarRef} className="progress-bar" aria-hidden="true" />
       <section className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-6 py-16 sm:px-10 lg:px-12">
         <header className="flex items-center justify-between border-b border-white/10 pb-6">
           <div>
@@ -78,13 +129,13 @@ export default function App() {
             </h1>
           </div>
           <nav className="hidden gap-6 text-sm text-neutral-300 sm:flex">
-            <a href="#projects" className="transition hover:text-white">
+            <a href="#projects" className="nav-link transition hover:text-white">
               Projects
             </a>
-            <a href="#about" className="transition hover:text-white">
+            <a href="#about" className="nav-link transition hover:text-white">
               About
             </a>
-            <a href="#contact" className="transition hover:text-white">
+            <a href="#contact" className="nav-link transition hover:text-white">
               Contact
             </a>
           </nav>
@@ -92,21 +143,21 @@ export default function App() {
 
         <div className="grid flex-1 items-center gap-12 py-16 lg:grid-cols-[1.2fr_0.8fr] lg:py-24">
           <section>
-            <p className="mb-4 inline-flex rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-xs font-medium text-cyan-300">
+            <p className="hero-enter hero-enter-1 mb-4 inline-flex rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-xs font-medium text-cyan-300">
               Junior React / Frontend
             </p>
-            <h2 className="max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl">
+            <h2 className="hero-enter hero-enter-2 max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl">
               I build clean, practical user interfaces with React and
               TypeScript.
             </h2>
-            <p className="mt-6 max-w-2xl text-base leading-7 text-neutral-300 sm:text-lg">
+            <p className="hero-enter hero-enter-3 mt-6 max-w-2xl text-base leading-7 text-neutral-300 sm:text-lg">
               I’m a junior frontend developer focused on building responsive,
               user-friendly interfaces. Right now, I’m looking for a frontend
               role where I can keep improving by shipping real products and
               solving real UI problems.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="hero-enter hero-enter-4 mt-8 flex flex-wrap gap-3">
               <a
                 href="#projects"
                 className="rounded-2xl bg-cyan-400 px-5 py-3 text-sm font-medium text-neutral-950 transition hover:scale-[1.02]"
@@ -130,7 +181,7 @@ export default function App() {
             </div>
           </section>
 
-          <aside className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-2xl shadow-black/20">
+          <aside ref={heroAsideRef} className="hero-enter hero-enter-5 hero-parallax rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-2xl shadow-black/20">
             <p className="text-sm uppercase tracking-[0.2em] text-neutral-400">
               Core Focus
             </p>
@@ -164,7 +215,7 @@ export default function App() {
         id="projects"
         className="mx-auto w-full max-w-6xl px-6 pb-20 sm:px-10 lg:px-12"
       >
-        <div className="mb-8">
+        <div className="reveal mb-8">
           <p className="text-sm uppercase tracking-[0.2em] text-cyan-400">
             Projects
           </p>
@@ -180,10 +231,10 @@ export default function App() {
         </div>
 
         <div className="grid gap-6">
-          {projects.map((project) => (
+          {projects.map((project, i) => (
             <article
               key={project.title}
-              className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-xl shadow-black/20"
+              className={`card-hover reveal reveal-delay-${i + 1} rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-xl shadow-black/20`}
             >
               <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
                 <div className="max-w-3xl">
@@ -262,7 +313,7 @@ export default function App() {
         className="mx-auto w-full max-w-6xl px-6 pb-20 sm:px-10 lg:px-12"
       >
         <div className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
+          <div className="reveal rounded-3xl border border-white/10 bg-white/[0.03] p-6">
             <p className="text-sm uppercase tracking-[0.2em] text-cyan-400">
               About
             </p>
@@ -277,7 +328,7 @@ export default function App() {
             </p>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
+          <div className="reveal reveal-delay-1 rounded-3xl border border-white/10 bg-white/[0.03] p-6">
             <p className="text-sm uppercase tracking-[0.2em] text-cyan-400">
               What I’m looking for
             </p>
@@ -297,7 +348,7 @@ export default function App() {
         id="contact"
         className="mx-auto w-full max-w-6xl px-6 pb-24 sm:px-10 lg:px-12"
       >
-        <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-cyan-400/10 to-transparent p-8">
+        <div className="reveal rounded-3xl border border-white/10 bg-gradient-to-br from-cyan-400/10 to-transparent p-8">
           <p className="text-sm uppercase tracking-[0.2em] text-cyan-400">
             Contact
           </p>
@@ -312,19 +363,19 @@ export default function App() {
           <div className="mt-6 flex flex-wrap gap-3">
             <a
               href={links.email}
-              className="rounded-2xl bg-cyan-400 px-5 py-3 text-sm font-medium text-neutral-950"
+              className="rounded-2xl bg-cyan-400 px-5 py-3 text-sm font-medium text-neutral-950 transition hover:bg-cyan-300"
             >
               Email
             </a>
             <a
               href={links.linkedin}
-              className="rounded-2xl border border-white/15 px-5 py-3 text-sm font-medium text-white"
+              className="rounded-2xl border border-white/15 px-5 py-3 text-sm font-medium text-white transition hover:border-white/30 hover:bg-white/5"
             >
               LinkedIn
             </a>
             <a
               href={links.github}
-              className="rounded-2xl border border-white/15 px-5 py-3 text-sm font-medium text-white"
+              className="rounded-2xl border border-white/15 px-5 py-3 text-sm font-medium text-white transition hover:border-white/30 hover:bg-white/5"
             >
               GitHub
             </a>
@@ -333,7 +384,7 @@ export default function App() {
       </section>
       {selectedImage && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+          className="lightbox-enter fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
           onClick={() => setSelectedImage(null)}
         >
           <div className="relative max-h-[90vh] max-w-5xl">
