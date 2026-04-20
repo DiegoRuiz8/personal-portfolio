@@ -1,11 +1,14 @@
 @import "tailwindcss";
 
-/* ── Animation tokens — tune these to adjust the whole site ── */
+/* ── Design tokens ──────────────────────────────────────────── */
 :root {
   --duration-enter: 500ms;
   --duration-micro: 200ms;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --header-height: 72px;
+  --cyan: #22d3ee;
+  --cyan-glow: rgba(34, 211, 238, 0.15);
 }
 
 /* ── Keyframes ──────────────────────────────────────────────── */
@@ -25,6 +28,40 @@
   to   { opacity: 1; }
 }
 
+@keyframes orb-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+  33%       { transform: translate(30px, -25px) scale(1.06); opacity: 1; }
+  66%       { transform: translate(-20px, 18px) scale(0.94); opacity: 0.5; }
+}
+
+@keyframes badge-border-pulse {
+  0%, 100% { border-color: rgba(34, 211, 238, 0.3); box-shadow: none; }
+  50%       { border-color: rgba(34, 211, 238, 0.7); box-shadow: 0 0 10px rgba(34, 211, 238, 0.2); }
+}
+
+@keyframes badge-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes contact-shimmer {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(34, 211, 238, 0.1),
+      inset 0 0 20px rgba(34, 211, 238, 0.02);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(34, 211, 238, 0.38),
+      inset 0 0 20px rgba(34, 211, 238, 0.05);
+  }
+}
+
 /* ── Hero entrance stagger ──────────────────────────────────── */
 .hero-enter {
   opacity: 0;
@@ -35,6 +72,52 @@
 .hero-enter-3 { animation-delay: 210ms; }
 .hero-enter-4 { animation-delay: 320ms; }
 .hero-enter-5 { animation-delay: 460ms; }
+
+/* ── Hero gradient orb ──────────────────────────────────────── */
+.hero-glow-orb {
+  position: absolute;
+  top: -120px;
+  left: -80px;
+  width: 640px;
+  height: 640px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(34, 211, 238, 0.1) 0%,
+    transparent 65%
+  );
+  animation: orb-drift 10s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+}
+
+/* ── Hero gradient text ─────────────────────────────────────── */
+.hero-gradient-text {
+  background: linear-gradient(90deg, #ffffff 0%, #67e8f9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Section label glow ─────────────────────────────────────── */
+.section-label {
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.4);
+}
+
+/* ── Hero badge pulse ───────────────────────────────────────── */
+.badge-pulse {
+  animation: badge-border-pulse 2.5s ease-in-out infinite;
+}
+
+/* ── Hero aside hover glow ──────────────────────────────────── */
+.hero-aside-glow {
+  transition: box-shadow 300ms ease;
+}
+.hero-aside-glow:hover {
+  box-shadow:
+    0 0 24px rgba(34, 211, 238, 0.15),
+    0 32px 64px rgba(0, 0, 0, 0.35);
+}
 
 /* ── Scroll-triggered reveal ─────────────────────────────────
    .reveal owns the `transition` property.
@@ -57,11 +140,13 @@
 .reveal-delay-1 { transition-delay: 80ms; }
 .reveal-delay-2 { transition-delay: 180ms; }
 
-/* ── Project card hover lift ────────────────────────────────── */
+/* ── Project card hover: lift + cyan glow ───────────────────── */
 /* Gate hover on .is-visible so it can't fire during the enter animation */
 .card-hover.is-visible:hover {
   transform: translateY(-6px);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.45),
+    0 0 32px rgba(34, 211, 238, 0.08);
 }
 /* Fallback for any card-hover used without .reveal */
 .card-hover:not(.reveal) {
@@ -69,7 +154,19 @@
 }
 .card-hover:not(.reveal):hover {
   transform: translateY(-6px);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.45),
+    0 0 32px rgba(34, 211, 238, 0.08);
+}
+
+/* ── Tech badge stagger ─────────────────────────────────────── */
+.badge-stagger {
+  opacity: 0;
+}
+.card-hover.is-visible .badge-stagger {
+  animation: badge-fade-in 300ms ease-out forwards;
+  /* 250ms initial offset ensures badges start after card's transition-delay */
+  animation-delay: calc(var(--badge-i, 0) * 30ms + 250ms);
 }
 
 /* ── Nav link slide-in underline ────────────────────────────── */
@@ -86,8 +183,14 @@
   background: currentColor;
   transition: width var(--duration-micro) var(--ease-standard);
 }
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link.nav-active::after {
   width: 100%;
+}
+
+/* Active nav link */
+.nav-link.nav-active {
+  color: #22d3ee;
 }
 
 /* ── Lightbox fade-in ────────────────────────────────────────── */
@@ -95,17 +198,27 @@
   animation: fade-in 150ms var(--ease-standard) forwards;
 }
 
-/* ── Reading progress bar (JS-driven width) ─────────────────── */
+/* ── Lightbox content scale-in ──────────────────────────────── */
+.lightbox-content-enter {
+  animation: scale-in 200ms ease-out forwards;
+}
+
+/* ── Reading progress bar — cyan gradient ───────────────────── */
 .progress-bar {
   position: fixed;
   top: 0;
   left: 0;
   height: 2px;
   width: 0%;
-  background: #22d3ee; /* cyan-400 */
+  background: linear-gradient(90deg, #67e8f9, #22d3ee, #0891b2);
   z-index: 100;
   pointer-events: none;
   transition: width 60ms linear;
+}
+
+/* ── Contact animated shimmer border ────────────────────────── */
+.contact-shimmer {
+  animation: contact-shimmer 3s ease-in-out infinite;
 }
 
 /* ── Parallax hint ───────────────────────────────────────────── */
@@ -113,8 +226,47 @@
   will-change: transform;
 }
 
+/* ── Back-to-top button ──────────────────────────────────────── */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(34, 211, 238, 0.45);
+  background: rgba(10, 10, 10, 0.85);
+  color: #22d3ee;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition:
+    box-shadow 250ms ease,
+    opacity 300ms ease,
+    transform 300ms var(--ease-out);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+.back-to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.3);
+}
+.back-to-top:focus-visible {
+  outline: 2px solid #22d3ee;
+  outline-offset: 3px;
+}
+
 /* ── Reduced motion: disable every animation / transition ───── */
 @media (prefers-reduced-motion: reduce) {
+  /* Existing */
   .hero-enter {
     animation: none;
     opacity: 1;
@@ -141,4 +293,18 @@
   .progress-bar {
     display: none;
   }
+
+  /* New */
+  .hero-glow-orb     { animation: none; }
+  .badge-pulse        { animation: none; }
+  .badge-stagger      { opacity: 1; }
+  .card-hover.is-visible .badge-stagger { animation: none; }
+  .lightbox-content-enter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .contact-shimmer    { animation: none; }
+  .hero-aside-glow    { transition: none; }
+  .back-to-top        { transition: opacity 0ms, transform 0ms; }
 }
