@@ -4,6 +4,9 @@ import historyImg from "./assets/history.png";
 import trafficDashboardImg from "./assets/traffic-dashboard.png";
 import trafficStatsImg from "./assets/traffic-stats.png";
 import trafficCamerasImg from "./assets/traffic-cameras.png";
+import wcn1 from "./assets/wcn1.png";
+import wcn2 from "./assets/wcn2.png";
+import wcn3 from "./assets/wcn3.png";
 import { useState, useEffect, useRef, useCallback } from "react";
 
 const projects = [
@@ -55,13 +58,36 @@ const projects = [
     ],
     screenshots: [trafficDashboardImg, trafficStatsImg, trafficCamerasImg],
   },
+
+  {
+    title: "World Cup Nights",
+    description:
+      "Full-stack event booking platform for a double-decker party bus experience during FIFA World Cup 2026 in Guadalajara. Includes real-time ticket selection, multi-ticket checkout, and automated email confirmation.",
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "MercadoPago",
+      "Resend",
+      "Google Sheets API",
+      "Vercel",
+    ],
+    demo: "https://www.worldcupnights.lat/",
+    repo: "https://github.com/DiegoRuiz8/worldcupnights",
+    highlights: [
+      "Integrated MercadoPago Checkout Pro with multi-ticket and mixed-tier ordering",
+      "Webhook-driven confirmation flow: payment → Google Sheets log → email receipt",
+      "Bilingual (EN/ES) landing page with date selector, upsell modal, and sticky booking bar",
+      "Deployed on Vercel with custom domain and automated CI/CD via GitHub",
+    ],
+    screenshots: [wcn1, wcn2, wcn3],
+  },
 ];
 
 const links = {
   github: "https://github.com/DiegoRuiz8",
   linkedin: "https://www.linkedin.com/in/d-ruizm/",
   email: "mailto:diegoruiz55@hotmail.com",
-  resume: "/CVRuizDiego_portfolio.pdf",
+  resume: "/CV_DiegoRuiz.pdf",
 };
 
 export default function App() {
@@ -265,11 +291,9 @@ export default function App() {
 
       {/* ── Hero section ──────────────────────────────────────── */}
       <section
-        className="mx-auto flex w-full max-w-6xl flex-col justify-center px-6 sm:px-10 lg:px-12"
-        style={{ minHeight: "calc(100svh - var(--header-height))" }}
-      >
-        <div className="grid flex-1 items-center gap-12 py-12 lg:grid-cols-[1.2fr_0.8fr] lg:py-20">
-          {/* Hero text — left column */}
+  className="mx-auto flex w-full max-w-6xl flex-col justify-center px-6 sm:px-10 lg:px-12"
+>
+  <div className="grid items-center gap-12 py-10 lg:grid-cols-[1.2fr_0.8fr] lg:py-16">
           <section className="relative">
             <div className="hero-glow-orb" aria-hidden="true" />
 
