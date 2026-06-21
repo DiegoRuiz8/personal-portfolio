@@ -87,7 +87,7 @@ const links = {
   github: "https://github.com/DiegoRuiz8",
   linkedin: "https://www.linkedin.com/in/d-ruizm/",
   email: "mailto:diegoruiz55@hotmail.com",
-  resume: "/CV_DiegoRuiz.pdf",
+  resume: "/Diego_Ruiz_CV.pdf",
 };
 
 export default function App() {
@@ -131,7 +131,10 @@ export default function App() {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "instant" : "smooth" });
+    window.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? "instant" : "smooth",
+    });
   };
 
   // Lightbox: keyboard navigation + focus trap
@@ -202,7 +205,9 @@ export default function App() {
       },
       { threshold: 0, rootMargin: "0px 0px 80px 0px" },
     );
-    document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+    document
+      .querySelectorAll(".reveal")
+      .forEach((el) => revealObserver.observe(el));
 
     // Active section indicator via IntersectionObserver
     const sectionObserver = new IntersectionObserver(
@@ -290,16 +295,14 @@ export default function App() {
       </header>
 
       {/* ── Hero section ──────────────────────────────────────── */}
-      <section
-  className="mx-auto flex w-full max-w-6xl flex-col justify-center px-6 sm:px-10 lg:px-12"
->
-  <div className="grid items-center gap-12 py-10 lg:grid-cols-[1.2fr_0.8fr] lg:py-16">
+      <section className="mx-auto flex w-full max-w-6xl flex-col justify-center px-6 sm:px-10 lg:px-12">
+        <div className="grid items-center gap-12 py-10 lg:grid-cols-[1.2fr_0.8fr] lg:py-16">
           <section className="relative">
             <div className="hero-glow-orb" aria-hidden="true" />
 
             <div className="relative z-10">
               <p className="hero-enter hero-enter-1 badge-pulse mb-4 inline-flex rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-xs font-medium text-cyan-300">
-                Junior React / Frontend
+                React / Frontend
               </p>
               <h2
                 className="hero-enter hero-enter-2 max-w-3xl text-4xl font-bold leading-tight sm:text-5xl"
@@ -311,7 +314,7 @@ export default function App() {
                 </span>
               </h2>
               <p className="hero-enter hero-enter-3 mt-6 max-w-2xl text-base leading-7 text-neutral-300 sm:text-lg">
-                I'm a junior frontend developer focused on building responsive,
+                I'm a frontend developer focused on building responsive,
                 user-friendly interfaces. Right now, I'm looking for a frontend
                 role where I can keep improving by shipping real products and
                 solving real UI problems.
@@ -414,9 +417,7 @@ export default function App() {
                       <span
                         key={item}
                         className="badge-stagger cursor-default rounded-full border border-white/10 bg-black/20 px-3 py-1 text-xs text-neutral-300 transition-colors hover:border-cyan-400/40 hover:text-cyan-300"
-                        style={
-                          { "--badge-i": badgeIdx } as React.CSSProperties
-                        }
+                        style={{ "--badge-i": badgeIdx } as React.CSSProperties}
                       >
                         {item}
                       </span>
@@ -494,7 +495,7 @@ export default function App() {
               A practical builder, not a portfolio maximalist.
             </h3>
             <p className="mt-4 leading-7 text-neutral-300">
-              I'm a junior frontend developer focused on React. I like building
+              I'm a frontend developer focused on React. I like building
               products that are clean, responsive, and easy to use. I care about
               shipping, iterating, and improving through real project work
               instead of getting stuck polishing forever.
@@ -509,9 +510,9 @@ export default function App() {
               Frontend opportunities where I can contribute early.
             </h3>
             <p className="mt-4 leading-7 text-neutral-300">
-              I'm especially interested in junior frontend or React roles where
-              I can work on real features, strengthen my UI fundamentals, and
-              keep growing as an engineer.
+              I'm especially interested in frontend or React roles where I can
+              work on real features, strengthen my UI fundamentals, and keep
+              growing as an engineer.
             </p>
           </div>
         </div>
