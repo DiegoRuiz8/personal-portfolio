@@ -22,7 +22,7 @@
   --phone-screen: #0b1015;
   --editorial-surface: #1b1712;
   --editorial-overlay: rgba(19, 14, 9, 0.92);
-  --hero-grid-line: rgba(243, 242, 239, 0.075);
+  --hero-grid-line: rgba(243, 242, 239, 0.12);
   --section-grid-line: rgba(243, 242, 239, 0.035);
   --property-surface: #172321;
   --property-overlay: rgba(11, 25, 24, 0.88);
@@ -68,7 +68,7 @@ button { font: inherit; }
 .intro-flow__horizon { position: absolute; z-index: 0; top: 32rem; left: 50%; width: max(76rem, 116vw); height: 54rem; border-radius: 50% 50% 0 0 / 44% 44% 0 0; background: radial-gradient(ellipse at 50% 21%, rgba(249, 249, 246, 0.9) 0%, rgba(198, 204, 207, 0.7) 13%, rgba(101, 110, 116, 0.58) 31%, rgba(35, 39, 44, 0.44) 53%, transparent 72%); transform: translateX(-50%); opacity: 0.66; }
 .intro-flow::after { position: absolute; z-index: 1; inset: 0; pointer-events: none; background: linear-gradient(to bottom, transparent 0%, transparent 43rem, var(--canvas) 82rem, var(--canvas) 100%); }
 .hero-section { position: relative; z-index: 2; min-height: min(48rem, calc(100dvh - 4.5rem)); padding-top: clamp(4rem, 8vw, 7.75rem); padding-bottom: 8.5rem; }
-.hero-section::before { position: absolute; z-index: 0; inset: 0; background-image: linear-gradient(var(--hero-grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--hero-grid-line) 1px, transparent 1px); background-position: center top; background-size: clamp(58px, 7vw, 96px) clamp(58px, 7vw, 96px); mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 72%, transparent 100%); opacity: 0.72; pointer-events: none; }
+.hero-section::before { position: absolute; z-index: 0; inset: 0; background-image: linear-gradient(var(--hero-grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--hero-grid-line) 1px, transparent 1px); background-position: center top; background-size: clamp(58px, 7vw, 96px) clamp(58px, 7vw, 96px); mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 72%, transparent 100%); opacity: 0.9; pointer-events: none; }
 .hero-section__content { position: relative; z-index: 1; max-width: 58rem; margin: 0 auto; text-align: center; }
 .hero-title { max-width: 58rem; margin: 1.4rem auto 0; color: var(--text); font-size: clamp(3.5rem, 8vw, 7.5rem); font-weight: 680; letter-spacing: -0.078em; line-height: 0.88; }
 .hero-title span { color: #d9e9f1; }
