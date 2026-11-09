@@ -220,7 +220,7 @@ const content: Record<Language, {
     aboutTitle: "About",
     aboutCopy: [
       "I build web products that are useful and easy to use. My focus is on the frontend — turning ideas into clean, responsive experiences — with enough backend knowledge to connect a complete feature from start to finish.",
-      "Currently working as a fullstack developer at Grupo Frío / WorldKold, and co-founding Krea Studio where I build and launch custom sites.",
+      "Currently working as a fullstack developer at Sensify, building our dashboard to monitor every machine in real time, and co-founding Krea Studio where I build and launch custom sites.",
     ],
     capabilityLabels: ["Frontend", "Backend", "Tools"],
     capabilityCopy: [
@@ -232,8 +232,8 @@ const content: Record<Language, {
     experience: [
       {
         period: "2026 — Present",
-        title: "Fullstack Developer · Grupo Frío / WorldKold",
-        description: "Building web and mobile tools for daily operations, connecting React interfaces with an Odoo/Python backend.",
+        title: "Fullstack Developer · Sensify",
+        description: "Building Sensify's dashboard to visualize every machine in real time.",
       },
       {
         period: "2026 — Present",
@@ -266,7 +266,7 @@ const content: Record<Language, {
     aboutTitle: "Sobre mí",
     aboutCopy: [
       "Creo productos web que son útiles y fáciles de usar. Me enfoco en el frontend — convirtiendo ideas en experiencias claras y responsivas — con el conocimiento de backend necesario para conectar una funcionalidad completa de inicio a fin.",
-      "Actualmente trabajo como desarrollador fullstack en Grupo Frío / WorldKold, y cofundo Krea Studio donde construyo y lanzo sitios personalizados.",
+      "Actualmente trabajo como desarrollador fullstack en Sensify, donde construyo nuestro dashboard para monitorear todas las máquinas en tiempo real, y cofundo Krea Studio donde construyo y lanzo sitios personalizados.",
     ],
     capabilityLabels: ["Frontend", "Backend", "Herramientas"],
     capabilityCopy: [
@@ -278,8 +278,8 @@ const content: Record<Language, {
     experience: [
       {
         period: "2026 — Actualidad",
-        title: "Desarrollador Fullstack · Grupo Frío / WorldKold",
-        description: "Creo herramientas web y móviles para operaciones diarias, conectando interfaces en React con un backend en Odoo/Python.",
+        title: "Desarrollador Fullstack · Sensify",
+        description: "Construyo el dashboard de Sensify para visualizar todas las máquinas en tiempo real.",
       },
       {
         period: "2026 — Actualidad",
